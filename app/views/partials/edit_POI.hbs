@@ -1,0 +1,26 @@
+<section class="ui raised segment">
+    <div class="ui grid ">
+        <div class="ui form six wide column">
+            <div class="ui stacked segment">
+                <form action="/details/edit_POI/{{points._id}}" method="POST">
+                    <div class="field">
+                        <label>Name</label><input type="text" name="name" value="{{points.name}}">
+                    </div>
+                    <div class="field">
+                        <label>Description</label><input  type="text" name="description" value="{{points.description}}">
+                    </div>
+                    <div class="field">
+                        <label>Category</label><input  type="text" name="category" value="{{points.costalZone}}">
+                    </div>
+                    <div class="field">
+                        <label>Latitude</label><input  type="text" name="latitude" value="{{points.coordinate.geo.lat}}">
+                    </div>
+                    <div class="field">
+                        <label>Longitude</label><input type="text" name="longitude" value="{{points.coordinate.geo.long}}">
+                    </div>
+                    <button class="ui blue submit button">Edit Point of Interest</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
