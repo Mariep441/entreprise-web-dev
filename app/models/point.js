@@ -9,7 +9,7 @@ const pointSchema = new Schema({
     costalZone: String,
     latitude: String,
     longitude: String,
-    image: Buffer,
+    image: Array,
     contributor: {
         type: Schema.Types.ObjectId,
         ref: 'User'

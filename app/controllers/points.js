@@ -41,7 +41,7 @@ const Points = {
             const newPoint = new Point({
                 name: data.name,
                 description: data.description,
-                category: data.category,
+                costalZone: data.costalZone,
                 latitude: data.latitude,
                 longitude: data.longitude,
                 image: data.image,
@@ -63,18 +63,22 @@ const Points = {
 
     edit_POI: {
         handler: async function(request, h) {
-            const userEdit = request.payload;
-            const _id = request.params._id;
-            const points = await Point.findById(_id).populate('contributor').lean();
+            try {
+                const userEdit = request.payload;
+                const _id = request.params._id;
+                const points = await Point.findById(_id).populate('contributor').lean();
                 points.name = userEdit.name;
                 points.description = userEdit.description;
-                points.category = userEdit.category;
+                points.costalZone = userEdit.costalZone;
                 points.latitude = userEdit.latitude;
                 points.longitude = userEdit.longitude;
-                points.image =  userEdit.image;
-                points.contributor =  userEdit.id;
-            await Point.update_POI(_id);
-            return h.redirect('/view_list_POI');
+                points.image = userEdit.image;
+                points.contributor = userEdit.id;
+                await points.save();
+                return h.redirect('/view_list_POI');
+            } catch(err){
+                return h.view('/view_list_POI', { errors: [{ message: err.message }] });
+            }
         }
     },
 

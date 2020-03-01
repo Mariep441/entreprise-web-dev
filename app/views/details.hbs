@@ -2,10 +2,23 @@
 
 <section class="ui segment">
 
-    <p> <strong>{{points.name}}</strong>
-
+    <h2>{{points.costalZone}}</h2>
+    <h3> {{points.name}}</h3>
     <div>{{points.description}}</div>
-    <p>  {{points.category}}</p>
-    <p>  {{points.latitude}}</p>
+
+    <p></p>
+    <p><strong> latitude: </strong> {{points.coordinates.geo.lat}}</p>
+    <p><strong> longitude: </strong>  {{points.coordinates.geo.long}}</p>
 
 </section>
+
+<section class="ui segment">
+    <div class="ui large images">
+          {{#each points.image}}
+              <img src="{{this}}">
+          {{/each}}
+    </div>
+</section>
+
+
+
