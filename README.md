@@ -1,3 +1,6 @@
+
+Faeture for adding cloudinary into the project
+=======
 # Entreprise Web development
 # Assignment 1 Specification
 
@@ -14,3 +17,4 @@ Support the following app features:
 - Create, Read, Update & Delete POIs
 - Organise POIs into categories
 - Manage POI Images
+

@@ -1,16 +1,28 @@
 'use strict';
 
-require('dotenv').config();
-
+const ImageStore = require('./app/utils/image-store');
 const Hapi = require('@hapi/hapi');
 
 const server = Hapi.server({
-    port: 4000,
+    port: 3000,
     host: 'localhost'
 });
 
-server.validator(require('@hapi/joi'))
+const dotenv = require('dotenv');
+const credentials = {
+    cloud_name: process.env.name,
+    api_key: process.env.key,
+    api_secret: process.env.secret
+};
 
+const result = dotenv.config();
+if (result.error) {
+    console.log(result.error.message);
+    process.exit(1);
+}
+
+
+server.validator(require('@hapi/joi'))
 
 require('./app/models/db');
 
@@ -29,6 +41,8 @@ async function init() {
     });
 
     server.auth.default('session');
+
+    ImageStore.configure(credentials);
 
     server.views({
         engines: {
