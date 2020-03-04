@@ -1,3 +1,4 @@
+
 'use strict';
 
 const Point = require('../models/point');
@@ -16,7 +17,7 @@ const Points = {
         handler: async function(request, h) {
             const _id = request.params._id;
             const points = await Point.findById(_id).populate('contributor').lean();
-            return h.view('details', {title: 'details', points: points });
+            return h.view('details', {title: 'details', points: points});
         }
     },
 
@@ -42,8 +43,12 @@ const Points = {
                 name: data.name,
                 description: data.description,
                 costalZone: data.costalZone,
-                latitude: data.latitude,
-                longitude: data.longitude,
+                coordinates: {
+                    geo: {
+                          lat: data.lat,
+                          long: data.long,
+                    }
+                },
                 image: data.image,
                 contributor: user._id
             });
@@ -72,8 +77,11 @@ const Points = {
                     {name: userEdit.name,
                     description: userEdit.description,
                     costalZone: userEdit.costalZone,
-                    latitude: userEdit.latitude,
-                    longitude : userEdit.longitude,
+                    coordinates: {
+                        geo: {
+                             lat: userEdit.lat,
+                             long: userEdit.long}
+                    },
                     image : userEdit.image,
                     contributor : user._id})
             return h.redirect('/view_list_POI');;
@@ -89,16 +97,8 @@ const Points = {
     },
 
 
-    count_POI: {
-        handler: async function(request, h) {
-            const numberPoints = await Point.count()
-            return h.view('admin', {title: 'How many Points', numberPoints: numberPoints });
-        }
-    },
-
-
-
 
 };
 
 module.exports = Points;
+

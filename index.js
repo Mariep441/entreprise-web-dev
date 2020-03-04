@@ -21,6 +21,12 @@ if (result.error) {
     process.exit(1);
 }
 
+var handlebars = require('handlebars'),
+    groupBy = require('handlebars-group-by');
+
+groupBy.register(handlebars);
+
+
 
 server.validator(require('@hapi/joi'))
 
@@ -67,3 +73,4 @@ process.on('unhandledRejection', err => {
 });
 
 init();
+

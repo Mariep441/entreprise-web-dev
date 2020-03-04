@@ -1,3 +1,4 @@
+
 'use strict';
 
 const User = require('../models/user');
@@ -179,3 +180,4 @@ const Accounts = {
 };
 
 module.exports = Accounts;
+

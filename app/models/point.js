@@ -1,3 +1,4 @@
+
 'use strict';
 
 const Mongoose = require('mongoose');
@@ -7,7 +8,12 @@ const pointSchema = new Schema({
     name: String,
     description: String,
     costalZone: String,
-    lat: String,
+    coordinates: {
+        geo: {
+            lat: String,
+            long: String
+        }
+    },
     long: String,
     image: Array,
     contributor: {
@@ -31,6 +37,5 @@ pointSchema.statics.remove_POI = function(_id) {
 pointSchema.methods.Count = function() {
     return this.count({});
 };
-
 
 module.exports = Mongoose.model('Point', pointSchema);
