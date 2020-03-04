@@ -89,15 +89,6 @@ const Points = {
     },
 
 
-    count_POI: {
-        handler: async function(request, h) {
-            const numberPoints = await Point.count()
-            return h.view('admin', {title: 'How many Points', numberPoints: numberPoints });
-        }
-    },
-
-
-
 
 };
 

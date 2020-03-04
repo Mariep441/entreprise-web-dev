@@ -9,7 +9,8 @@ const Admins = {
         handler: async function(request, h) {
             const user = await User.find().lean();
             const points = await Point.find().populate('contributor').lean();
-            return h.view('admin', {title: 'admin', user: user, points: points });
+            const numberPoints = await Point.estimatedDocumentCount();
+            return h.view('admin', {title: 'admin', user: user, points: points, numberPoints: numberPoints });
         }
     },
 

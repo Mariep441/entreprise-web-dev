@@ -1,13 +1,38 @@
 {{> welcomemenu }}
 
 <section class="ui stacked segment">
+        <h1 class="ui  header"> Points of Interest</h1>
+        <h3> The islands of Ireland </h3>
+
     <div class="ui grid">
-        <aside class="six wide column">
-            <img src="images/blasket_islands.jpg" class="ui large image">
-        </aside>
-        <article class="ten wide column">
-            <header class="ui  header"> Points of Interest</header>
-            <p> The islands of Ireland </p>
-        </article>
+        <img src="https://res.cloudinary.com/drl4tdtjm/image/upload/v1582980663/blasket_islands_m4ljqq.jpg" class="ui large image">
     </div>
+
+
+
+    <div class="uk-container uk-padding-small">
+        <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: .uk-card">
+            {{#each images}}
+                <div>
+                    <div class="uk-card uk-card-default uk-card-small uk-text-center uk-text-baseline uk-animation-scale-up">
+                        <div class="uk-card-media-top">
+                            <img src="{{url}}">
+                        </div>
+                        <div>
+                            <div class="uk-card-footer">
+                                <p> {{public_id}}</p>
+                                <a href="/deleteimage/{{public_id}}" uk-icon="icon: trash"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {{/each}}
+        </div>
+    </div>
+
+
+
+
+
 </section>
