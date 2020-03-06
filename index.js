@@ -4,7 +4,7 @@ const ImageStore = require('./app/utils/image-store');
 const Hapi = require('@hapi/hapi');
 
 const server = Hapi.server({
-    port: 3000,
+    port: 5000,
     host: 'localhost'
 });
 
@@ -20,6 +20,12 @@ if (result.error) {
     console.log(result.error.message);
     process.exit(1);
 }
+
+var handlebars = require('handlebars'),
+    groupBy = require('handlebars-group-by');
+
+groupBy.register(handlebars);
+
 
 
 server.validator(require('@hapi/joi'))
@@ -67,3 +73,4 @@ process.on('unhandledRejection', err => {
 });
 
 init();
+

@@ -1,3 +1,4 @@
+
 'use strict';
 
 const Mongoose = require('mongoose');
@@ -7,8 +8,13 @@ const pointSchema = new Schema({
     name: String,
     description: String,
     costalZone: String,
-    latitude: String,
-    longitude: String,
+    coordinates: {
+        geo: {
+            lat: String,
+            long: String
+        }
+    },
+    long: String,
     image: Array,
     contributor: {
         type: Schema.Types.ObjectId,
@@ -20,13 +26,16 @@ pointSchema.statics.findById = function(_id) {
     return this.findOne({ _id : _id});
 };
 
+pointSchema.statics.findAndUpdateById = function(_id) {
+    return this.findAndModify ({ _id : _id});
+};
+
 pointSchema.statics.remove_POI = function(_id) {
     return this.deleteOne({ _id : _id});
 };
 
-pointSchema.statics.update_POI = function(_id) {
-    return this.updateOne({ _id : _id});
+pointSchema.methods.Count = function() {
+    return this.count({});
 };
-
 
 module.exports = Mongoose.model('Point', pointSchema);

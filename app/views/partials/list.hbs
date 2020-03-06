@@ -1,21 +1,24 @@
-<section class="ui raised segment">
-    <div class="ui grid">
-            <table class="ui celled table segment">
+
+
+    {{#group points by="costalZone"}}
+       <h3>{{value}}</h3>
+    <div class="ui five wide grid">
+            <table class="ui green celled table segment">
                 <thead>
                 <tr>
                     <th>Icone</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Category</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
                     <th>Contributor</th>
                 </tr>
                 </thead>
                 <tbody>
-                {{#each points}}
+                {{#each items}}
                     <tr>
                         <td>
+
                             <a href="/details/view_POI/{{_id}}" class="ui icon button">
                             <i class="icon teal marker"></i>
 
@@ -28,7 +31,6 @@
                         </td>
                         <td> {{name}} </td>
                         <td> {{description}} </td>
-                        <td> {{costalZone}} </td>
                         <td> {{coordinates.geo.lat}} </td>
                         <td> {{coordinates.geo.long}} </td>
                         <td> {{contributor.firstName}} {{contributor.lastName}} </td>
@@ -36,5 +38,6 @@
                 {{/each}}
                 </tbody>
             </table>
-    </div>
+      </div>
+{{/group}}
 </section>

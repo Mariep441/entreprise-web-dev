@@ -1,3 +1,4 @@
+
 'use strict';
 
 const Point = require('../models/point');
@@ -16,7 +17,7 @@ const Points = {
         handler: async function(request, h) {
             const _id = request.params._id;
             const points = await Point.findById(_id).populate('contributor').lean();
-            return h.view('details', {title: 'details', points: points });
+            return h.view('details', {title: 'details', points: points});
         }
     },
 
@@ -42,8 +43,12 @@ const Points = {
                 name: data.name,
                 description: data.description,
                 costalZone: data.costalZone,
-                latitude: data.latitude,
-                longitude: data.longitude,
+                coordinates: {
+                    geo: {
+                          lat: data.lat,
+                          long: data.long,
+                    }
+                },
                 image: data.image,
                 contributor: user._id
             });
@@ -63,22 +68,23 @@ const Points = {
 
     edit_POI: {
         handler: async function(request, h) {
-            try {
-                const userEdit = request.payload;
-                const _id = request.params._id;
-                const points = await Point.findById(_id).populate('contributor').lean();
-                points.name = userEdit.name;
-                points.description = userEdit.description;
-                points.costalZone = userEdit.costalZone;
-                points.latitude = userEdit.latitude;
-                points.longitude = userEdit.longitude;
-                points.image = userEdit.image;
-                points.contributor = userEdit.id;
-                await points.save();
-                return h.redirect('/view_list_POI');
-            } catch(err){
-                return h.view('/view_list_POI', { errors: [{ message: err.message }] });
-            }
+            const userEdit = request.payload;
+            const id = request.auth.credentials.id;
+            const user = await User.findById(id);
+            const _id = request.params._id;
+            await Point.findByIdAndUpdate(
+                    {_id: _id },
+                    {name: userEdit.name,
+                    description: userEdit.description,
+                    costalZone: userEdit.costalZone,
+                    coordinates: {
+                        geo: {
+                             lat: userEdit.lat,
+                             long: userEdit.long}
+                    },
+                    image : userEdit.image,
+                    contributor : user._id})
+            return h.redirect('/view_list_POI');;
         }
     },
 
@@ -91,6 +97,8 @@ const Points = {
     },
 
 
+
 };
 
 module.exports = Points;
+

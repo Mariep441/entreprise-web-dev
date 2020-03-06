@@ -1,3 +1,4 @@
+
 {{> menu_admin _id="admin" }}
 
 <p>List of all users</p>
@@ -10,9 +11,8 @@
             <div class="content">
                 <div class="header">
                     <a href="/admin_edit_user/{{_id}}"> {{firstName}} {{lastName}}</a>
-                    <a href="/admin_delete_user/{{_id}}">
-                        <i class="ui red icon trash"></i>
-                    </a>
+                    <a href="/admin_delete_user/{{_id}}"> <i class="ui red icon trash"></i></a>
+                    <p class="description"> {{numberPoints}} </p>
                 </div>
             </div>
         </div>
@@ -20,3 +20,5 @@
 </div>
 
 
+<p>List of all points</p>
+{{numberPoints}}

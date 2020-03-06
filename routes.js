@@ -32,8 +32,8 @@ module.exports = [
     { method: 'GET', path: '/admin_delete_user/{_id}', config: Admins.delete_user },
 
     { method: 'GET', path: '/details', config: Gallery.index },
-    { method: 'POST', path: '/upload_image', config: Gallery.uploadFile },
-    { method: 'GET', path: '/delete_image/{_id}', config: Gallery.deleteImage },
+    { method: 'POST', path: '/uploadImage', config: Gallery.uploadFile },
+    { method: 'GET', path: '/deleteImage/{image}', config: Gallery.deleteImage },
 
     {
         method: 'GET',
@@ -46,3 +46,4 @@ module.exports = [
         options: { auth: false }
     }
 ];
+
