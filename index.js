@@ -4,7 +4,7 @@ const ImageStore = require('./app/utils/image-store');
 const Hapi = require('@hapi/hapi');
 
 const server = Hapi.server({
-    port: 3000,
+    port: 5000,
     host: 'localhost'
 });
 

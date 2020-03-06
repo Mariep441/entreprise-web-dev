@@ -24,3 +24,23 @@
         </div>
     </div>
 </section>
+
+
+<div class="ui stacked segment">
+    <div class="column">
+        {{#each points.image}}
+        <div class="ui fluid card">
+            <div class="image">
+                <img src="{{this}}">
+            </div>
+            <div class="content">
+                <a href=/deleteImage/{{this}}> <i class="icon red trash"></i></a>{{this}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+<div>
+
+
+
+
