@@ -7,8 +7,8 @@ const User = require('../models/user');
 const Points = {
 
     home: {
-        handler: function(request, h) {
-            return h.view('home', { title: 'Home' });
+        handler: async function(request, h) {
+            return h.view('home', { title: 'Home'});
         }
     },
 
@@ -36,24 +36,29 @@ const Points = {
 
     add_POI: {
         handler: async function(request, h) {
-            const id = request.auth.credentials.id;
-            const user = await User.findById(id);
-            const data = request.payload;
-            const newPoint = new Point({
-                name: data.name,
-                description: data.description,
-                costalZone: data.costalZone,
-                coordinates: {
-                    geo: {
+          try {
+              const id = request.auth.credentials.id;
+              const user = await User.findById(id);
+              const data = request.payload;
+
+              const newPoint = new Point({
+                  name: data.name,
+                  description: data.description,
+                  costalZone: data.costalZone,
+                  coordinates: {
+                      geo: {
                           lat: data.lat,
                           long: data.long,
-                    }
-                },
-                image: data.image,
-                contributor: user._id
-            });
-            await newPoint.save();
-            return h.redirect('/view_list_POI');
+                      }
+                  },
+                  image: data.image,
+                  contributor: user._id
+              });
+              await newPoint.save();
+              return h.redirect('/view_list_POI');
+          }  catch (err) {
+              return h.view('home', {errors: [{message: err.message}]});
+          }
         }
     },
 

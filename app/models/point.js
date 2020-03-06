@@ -20,6 +20,7 @@ const pointSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
+
 });
 
 pointSchema.statics.findById = function(_id) {
@@ -34,8 +35,5 @@ pointSchema.statics.remove_POI = function(_id) {
     return this.deleteOne({ _id : _id});
 };
 
-pointSchema.methods.Count = function() {
-    return this.count({});
-};
 
 module.exports = Mongoose.model('Point', pointSchema);
