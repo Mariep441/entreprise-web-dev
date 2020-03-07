@@ -1,8 +1,9 @@
 
-=======
+============================
 # Entreprise Web development
 # Assignment 1 Specification
-=======
+============================
+
 Implement POI Core + selected features of POI Enhanced
 
 Support the following User Management Features:
