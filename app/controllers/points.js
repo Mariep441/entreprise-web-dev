@@ -3,6 +3,7 @@
 
 const Point = require('../models/point');
 const User = require('../models/user');
+const Image = require('../models/image');
 
 const Points = {
 
@@ -51,7 +52,6 @@ const Points = {
                           long: data.long,
                       }
                   },
-                  image: data.image,
                   contributor: user._id
               });
               await newPoint.save();
@@ -78,18 +78,18 @@ const Points = {
             const user = await User.findById(id);
             const _id = request.params._id;
             await Point.findByIdAndUpdate(
-                    {_id: _id },
-                    {name: userEdit.name,
+                {_id: _id },
+                {name: userEdit.name,
                     description: userEdit.description,
                     costalZone: userEdit.costalZone,
                     coordinates: {
                         geo: {
-                             lat: userEdit.lat,
-                             long: userEdit.long}
+                            lat: userEdit.lat,
+                            long: userEdit.long}
                     },
                     image : userEdit.image,
                     contributor : user._id})
-            return h.redirect('/view_list_POI');;
+            return h.redirect('/view_list_POI');
         }
     },
 
@@ -100,8 +100,6 @@ const Points = {
             return h.redirect('/view_list_POI');
         }
     },
-
-
 
 };
 
