@@ -18,6 +18,7 @@
     "dotenv": "^8.2.0",
     "handlebars": "^4.7.3",
     "handlebars-group-by": "^1.0.1",
+    "mais-mongoose-seeder": "^1.0.7",
     "mongoose": "^5.8.11"
   },
   "devDependencies": {

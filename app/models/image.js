@@ -5,10 +5,23 @@ const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
 
 const imageSchema = new Schema({
-    name: String,
-    url: String,
-    public_ip: String,
-
+    public_id : String,
+    version : String,
+    signature : String,
+    width : String ,
+    height : String,
+    format : String,
+    resource_type : String,
+    created_at : Date,
+    tags : Array,
+    bytes : String,
+    type : String,
+    etag : String,
+    placeholder : Boolean,
+    url : String,
+    secure_url : String,
+    original_filename : String,
+    original_extension : String
 
 });
 
