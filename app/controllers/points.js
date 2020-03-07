@@ -3,7 +3,7 @@
 
 const Point = require('../models/point');
 const User = require('../models/user');
-const Image = require('../models/image');
+
 
 const Points = {
 

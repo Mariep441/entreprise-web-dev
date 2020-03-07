@@ -3,15 +3,11 @@
 
 const ImageStore = require('../utils/image-store');
 const Point = require('../models/point');
-const User = require('../models/user');
-const url = require('../utils/image-store');
-const Image = require('../models/image');
 
 const cloudinary = require('cloudinary');
 const fs = require('fs');
 const util = require('util');
 const writeFile = util.promisify(fs.writeFile);
-
 
 
 const Gallery = {
