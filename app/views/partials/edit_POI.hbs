@@ -1,7 +1,5 @@
 <section class="ui raised segment">
-    <div class="ui grid ">
-        <div class="ui form six wide column">
-            <div class="ui stacked segment">
+        <div class="ui form column stacked segment">
                 <form action="/details/edit_POI/{{points._id}}" method="POST">
                     <div class="field">
                         <label>Name</label><input type="text" name="name" value="{{points.name}}">
@@ -20,27 +18,25 @@
                     </div>
                     <button class="ui blue submit button">Edit Point of Interest</button>
                 </form>
-            </div>
         </div>
-    </div>
 </section>
 
 
-<div class="ui stacked segment">
-    <div class="column">
-        {{#each points.image}}
-        <div class="ui fluid card">
-            <div class="image">
-                <img src="{{this}}">
+<section class="ui raised segment">
+    <div class="ui segment">
+        <div class= "column">
+            {{#each points.image}}
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{{url}}">
+                </div>
+                <div class="content">
+                    <a href=/deleteImage/{{public_id}}> <i class="icon red trash"></i></a>{{public_id}}
+                </div>
             </div>
-            <div class="content">
-                <a href=/deleteImage/{{this}}> <i class="icon red trash"></i></a>{{this}}
-            </div>
+            {{/each}}
         </div>
-        {{/each}}
-    </div>
-<div>
-
-
+    <div>
+</section>
 
 

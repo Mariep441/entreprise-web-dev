@@ -31,9 +31,12 @@ module.exports = [
     { method: 'POST', path: '/admin_edit_user/{_id}', config: Admins.edit_user_details },
     { method: 'GET', path: '/admin_delete_user/{_id}', config: Admins.delete_user },
 
-    { method: 'GET', path: '/details', config: Gallery.index },
-    { method: 'POST', path: '/uploadImage', config: Gallery.uploadFile },
-    { method: 'GET', path: '/deleteImage/{image}', config: Gallery.deleteImage },
+    { method: 'GET', path: '/gallery', config: Gallery.index },
+    { method: 'GET', path: '/details/view_upload_image/{_id}', config: Gallery.view_upload_image },
+    { method: 'POST', path: '/details/view_upload_image/{_id}', config: Gallery.uploadFile },
+    { method: 'GET', path: '/deleteImage/{_id}', config: Gallery.deleteImage },
+
+
 
     {
         method: 'GET',

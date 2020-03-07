@@ -1,0 +1,21 @@
+
+
+<div class="uk-container uk-padding-small">
+    <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: .uk-card">
+        {{#each images}}
+            <div>
+                <div class="uk-card uk-card-default uk-card-small uk-text-center uk-text-baseline uk-animation-scale-up">
+                    <div class="ui large images">
+                        <img src="{{url}}">
+                    </div>
+                    <div>
+                        <div class="uk-card-footer">
+                            <p> {{public_id}}</p>
+                            <a href="/deleteimage/{{public_id}}" uk-icon="icon: trash"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
