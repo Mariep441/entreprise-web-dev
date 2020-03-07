@@ -4,11 +4,12 @@
 const Point = require('../models/point');
 const User = require('../models/user');
 
+
 const Points = {
 
     home: {
-        handler: function(request, h) {
-            return h.view('home', { title: 'Home' });
+        handler: async function(request, h) {
+            return h.view('home', { title: 'Home'});
         }
     },
 
@@ -36,24 +37,28 @@ const Points = {
 
     add_POI: {
         handler: async function(request, h) {
-            const id = request.auth.credentials.id;
-            const user = await User.findById(id);
-            const data = request.payload;
-            const newPoint = new Point({
-                name: data.name,
-                description: data.description,
-                costalZone: data.costalZone,
-                coordinates: {
-                    geo: {
+          try {
+              const id = request.auth.credentials.id;
+              const user = await User.findById(id);
+              const data = request.payload;
+
+              const newPoint = new Point({
+                  name: data.name,
+                  description: data.description,
+                  costalZone: data.costalZone,
+                  coordinates: {
+                      geo: {
                           lat: data.lat,
                           long: data.long,
-                    }
-                },
-                image: data.image,
-                contributor: user._id
-            });
-            await newPoint.save();
-            return h.redirect('/view_list_POI');
+                      }
+                  },
+                  contributor: user._id
+              });
+              await newPoint.save();
+              return h.redirect('/view_list_POI');
+          }  catch (err) {
+              return h.view('home', {errors: [{message: err.message}]});
+          }
         }
     },
 
@@ -73,18 +78,18 @@ const Points = {
             const user = await User.findById(id);
             const _id = request.params._id;
             await Point.findByIdAndUpdate(
-                    {_id: _id },
-                    {name: userEdit.name,
+                {_id: _id },
+                {name: userEdit.name,
                     description: userEdit.description,
                     costalZone: userEdit.costalZone,
                     coordinates: {
                         geo: {
-                             lat: userEdit.lat,
-                             long: userEdit.long}
+                            lat: userEdit.lat,
+                            long: userEdit.long}
                     },
                     image : userEdit.image,
                     contributor : user._id})
-            return h.redirect('/view_list_POI');;
+            return h.redirect('/view_list_POI');
         }
     },
 
@@ -95,8 +100,6 @@ const Points = {
             return h.redirect('/view_list_POI');
         }
     },
-
-
 
 };
 
